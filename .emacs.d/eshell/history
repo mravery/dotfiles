@@ -1,0 +1,22 @@
+ls
+env
+exit
+ls
+jj
+j
+cd
+ls
+bash
+bash
+bash
+bash
+exit
+mv .bashrc .bashrc.old
+touch .bashrc
+ls
+cd .emacs.d/
+ls
+curl -O http://www.emacswiki.org/emacs/download/pp-c-l.el
+ls
+ll
+ls -al
