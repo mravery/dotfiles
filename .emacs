@@ -26,24 +26,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(global-visual-line-mode t)
+ '(global-hl-line-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
+ '(linum-format "%d ")
  '(make-backup-files nil)
- '(org-startup-indented t)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ))
+ '(nil nil t)
+ '(org-startup-indented t))
 
 ;; Pick up my private mods.
 (add-to-list 'load-path "~/.emacs.d/")
 
-;; Activate Org mode
+;; Auto activate modes
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+
 ;; Key-bindings for Org mode.
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
@@ -77,3 +74,10 @@
 ;; Activate tramp so we can do sudo all the time.
 (require 'tramp)
 (setq tramp-default-method "scp")
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
