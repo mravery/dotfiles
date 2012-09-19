@@ -1,8 +1,24 @@
-;; You can turn on line-wrapping without the stupid arrows by turning on visual line mode.
+;; This configuration file needs the corresponding 
+;; .emacs.d directory to work properly.
 
-;; Set window size
-(if window-system
-      (set-frame-size (selected-frame) 200 54))
+
+;; TIPS, TRICKS, AND HINTS (OH MY!)
+
+;; You can turn on line-wrapping without the stupid arrows 
+;; by turning on visual line mode.
+
+
+;; PERSONAL CUSTOMIZATION
+
+;; The first command sets the default directory to <directory> if no
+;; initial file is specified. The second sets the directory if a file
+;; IS specified at startup.
+
+;; (setq command-line-default-directory "~/Dropbox/Out of the Box/")
+
+;; Set window size for 1440x900 (Macbook Air '13 2011)
+(if window-system (set-frame-size (selected-frame) 200 54))
+
 
 ;; Default setup.
 (custom-set-variables
@@ -36,7 +52,8 @@
 
 ;; Activate Pretty Control ^L
 (require 'pp-c-l)
-(setq pp^L-^L-string "                                                           ")
+;; Set the control line to 70 spaces.
+(setq pp^L-^L-string "                                                                      ");
 (pretty-control-l-mode 1)
 
 ;; Configure gnus for email; this info needs to be configured to your setup.
@@ -56,3 +73,7 @@
 ;; Add Marmalade to package manager
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+;; Activate tramp so we can do sudo all the time.
+(require 'tramp)
+(setq tramp-default-method "scp")
