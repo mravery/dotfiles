@@ -39,8 +39,10 @@
 (add-to-list 'load-path "~/.emacs.d/")
 ;;(add-to-list 'load-path "~/.emacs.d/elpa/color-theme-6.5.5")
 (add-to-list 'load-path "~/.emacs.d/elpa/color-theme-20080305.834")
+(add-to-list 'load-path "~/.emacs.d/elpa/multi-web-mode-20120925.942")
+(add-to-list 'load-path "~/.emacs.d/elpa/framemove-20101013.2052")
 
-;; Auto activate modes
+;; Auto activate modes.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
@@ -70,19 +72,35 @@
       smtpmail-smtp-service 587
       smtpmail-local-domain "Celestra.local")
 
-;; Add Marmalade to package manager
+;; Add Marmalade to package manager.
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+;; Adding multi-web mode.
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+		  (ruby-mode "<\\%" "\\%>")
+		  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+		  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5" "erb"))
+(multi-web-global-mode 1)
+
 ;; Activate tramp so we can do sudo all the time.
 (require 'tramp)
 (setq tramp-default-method "scp")
 
+;; Adding color themes.
 (require 'color-theme)
 (setq color-theme-is-global t)
 
-
+;; Adding windmove shortcuts.
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
 ;; 
 
 (custom-set-faces
