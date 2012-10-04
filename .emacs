@@ -30,12 +30,15 @@
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  '(linum-format "%d ")
+ '(longlines-wrap-follows-window-size t)
  '(make-backup-files nil)
  '(nil nil t)
  '(org-startup-indented t))
 
-;; Pick up my private mods.
+;; Pick up my private mods.a
 (add-to-list 'load-path "~/.emacs.d/")
+;;(add-to-list 'load-path "~/.emacs.d/elpa/color-theme-6.5.5")
+(add-to-list 'load-path "~/.emacs.d/elpa/color-theme-20080305.834")
 
 ;; Auto activate modes
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -69,15 +72,22 @@
 
 ;; Add Marmalade to package manager
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 ;; Activate tramp so we can do sudo all the time.
 (require 'tramp)
 (setq tramp-default-method "scp")
+
+(require 'color-theme)
+(setq color-theme-is-global t)
+
+
+;; 
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(hl-line ((t (:underline "brightyellow")))))
