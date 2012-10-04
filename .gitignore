@@ -13,4 +13,4 @@ tramp
 
 .emacs.d/elpa/archives/
 .emacs.d/url/cookies
-.emacs.d/eshell/
+.emacs.d/eshell/history
