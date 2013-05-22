@@ -42,7 +42,9 @@
  '(large-file-warning-threshold nil)
  '(linum-format "%d ")
  '(make-backup-files nil)
- '(org-startup-indented t))
+ '(org-startup-folded nil)
+ '(org-startup-indented t)
+ '(vc-follow-symlinks nil))
 
 ;; VISUAL GOODIES
 
@@ -87,10 +89,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(col-highlight ((t (:background "SlateGray3"))))
+ '(default ((t (:background "#000000" :foreground "#eaeaea" :slant normal :weight normal :height 120 :width normal :family "Inconsolata"))))
+ '(col-highlight ((t (:background "SlateGray3"))) t)
  '(lazy-highlight ((t (:background "paleturquoise" :foreground "black"))))
  '(linum ((t (:foreground "#9fc59f"))))
- '(org-hide ((t (:foreground "color-235"))) t))
+ '(org-hide ((t (:foreground "color-235"))) t)
+ '(widget-field ((t (:background "#2a2a2a" :foreground "color-34" :box (:line-width 1 :color "#eaeaea"))))))
+
+;; Turn off linum in certain contexts
+(require 'linum-off)
 
 ;; ADDED FUNCTIONALITY CONFIGURATION
 
