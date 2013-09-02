@@ -34,7 +34,9 @@
  '(col-highlight-vline-face-flag nil)
  '(column-number-mode t)
  '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
- '(custom-safe-themes (quote ("69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
+ '(custom-safe-themes
+   (quote
+    ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
  '(global-hl-line-mode t)
  '(global-linum-mode t)
  '(global-visual-line-mode t)
@@ -42,15 +44,18 @@
  '(large-file-warning-threshold nil)
  '(linum-format "%d ")
  '(make-backup-files nil)
+ '(org-export-backends (quote (ascii beamer html icalendar latex md odt)))
+ '(org-list-allow-alphabetical t)
  '(org-startup-folded nil)
  '(org-startup-indented t)
+ '(tool-bar-mode nil)
  '(vc-follow-symlinks nil))
 
 ;; VISUAL GOODIES
 
 ;; Auto activate modes.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+;;(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
@@ -84,17 +89,23 @@
 ;; Set highlight line color
 (set-face-background hl-line-face "gray13")
 
+;; Set Chinese to a specific fontset
+;; (set-fontset-font "fontset-standard"
+;;                       (cons (decode-char 'ucs #x4E00)
+;;                             (decode-char 'ucs #x9FFF))
+;;                       "-*-SimHei-*-*-*-*-14-*-*-*-*-*-iso10646-1")
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#000000" :foreground "#eaeaea" :slant normal :weight normal :height 120 :width normal :family "Inconsolata"))))
+ '(default ((t (:background "#000000" :foreground "#eaeaea" :slant normal :weight normal :height 140 :width normal :family "Inconsolata"))))
  '(col-highlight ((t (:background "SlateGray3"))) t)
+ '(font-lock-comment-face ((t (:foreground "#969896" :slant normal))))
  '(lazy-highlight ((t (:background "paleturquoise" :foreground "black"))))
  '(linum ((t (:foreground "#9fc59f"))))
  '(org-hide ((t (:foreground "color-235"))) t)
- '(widget-field ((t (:background "#2a2a2a" :foreground "color-34" :box (:line-width 1 :color "#eaeaea"))))))
+ '(widget-field ((t (:foreground "firebrick2" :box (:line-width 1 :color "#eaeaea"))))))
 
 ;; Turn off linum in certain contexts
 (require 'linum-off)
@@ -106,6 +117,10 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+;; nXhtl
+
+;; (load "/Users/achan/.emacs.d/nxhtml/autostart.el")
 
 ;; Configure gnus for email; this info needs to be configured to your setup.
 (setq gnus-select-method '(nnimap "gmail"
@@ -133,4 +148,6 @@
 
 ;; 
 (put 'dired-find-alternate-file 'disabled nil)
-
+;; Turn off tool-bar
+(tool-bar-mode -1)
+(put 'downcase-region 'disabled nil)
