@@ -97,7 +97,7 @@
  '(col-highlight ((t (:background "SlateGray3"))) t)
  '(font-lock-comment-face ((t (:foreground "#969896" :slant normal))))
  '(lazy-highlight ((t (:background "paleturquoise" :foreground "black"))))
- '(linum ((t (:foreground "#9fc59f"))))
+ '(linum ((t (:background "#2a2a2a" :foreground "#9fc59f"))))
  '(mode-line ((t (:background "color-235" :box (:line-width 1 :color "#4d4d4c")))))
  '(org-hide ((t (:foreground "color-235"))) t)
  '(widget-field ((t (:foreground "firebrick2" :box (:line-width 1 :color "#eaeaea"))))))
