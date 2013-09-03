@@ -1,0 +1,8 @@
+[user]
+	name = Avery Chan
+	email = avery@ootbdev.com
+[color]
+	ui = true
+[alias]
+	stat = status
+	co = checkout
