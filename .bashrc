@@ -17,9 +17,21 @@ else
     export PS1='\u[\@]\w > '
 fi
 
-alias ls='ls -F'
-alias ll='ls -Fahl'
-alias lv='ls -@aehlFG'
+if [[ $OS -eq 'Linux' ]]; then
+    ls_linux="--color=always"
+else
+    ls_linux=""
+fi
+
+if [[ $OS -eq 'Mac' ]]; then
+    ls_mac="-@"
+else
+    ls_mac=""
+fi
+
+alias ls="ls -F $ls_linux"
+alias ll="ls -Fahl $ls_linux"
+alias lv="ls -aehlFG $ls_mac $ls_linux"
 alias e='emacs'
 
 alias socketmravery="ssh -D 9999 mravery@ootbdev.com"
