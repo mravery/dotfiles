@@ -31,12 +31,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
  '(col-highlight-vline-face-flag nil)
  '(column-number-mode t)
  '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
- '(custom-safe-themes (quote ("d818d364712b551c535b952b3aa089c5941ef284" "39327baac0e924fc06c561986ed6fff862df8e1d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
+ '(custom-safe-themes
+   (quote
+    ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "d818d364712b551c535b952b3aa089c5941ef284" "39327baac0e924fc06c561986ed6fff862df8e1d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
  '(fci-rule-color "#efefef")
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -51,7 +55,26 @@
  '(org-startup-indented t)
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
- '(vc-annotate-color-map (quote ((20 . "#c82829") (40 . "#f5871f") (60 . "#eab700") (80 . "#718c00") (100 . "#3e999f") (120 . "#4271ae") (140 . "#8959a8") (160 . "#c82829") (180 . "#f5871f") (200 . "#eab700") (220 . "#718c00") (240 . "#3e999f") (260 . "#4271ae") (280 . "#8959a8") (300 . "#c82829") (320 . "#f5871f") (340 . "#eab700") (360 . "#718c00"))))
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#c82829")
+     (40 . "#f5871f")
+     (60 . "#eab700")
+     (80 . "#718c00")
+     (100 . "#3e999f")
+     (120 . "#4271ae")
+     (140 . "#8959a8")
+     (160 . "#c82829")
+     (180 . "#f5871f")
+     (200 . "#eab700")
+     (220 . "#718c00")
+     (240 . "#3e999f")
+     (260 . "#4271ae")
+     (280 . "#8959a8")
+     (300 . "#c82829")
+     (320 . "#f5871f")
+     (340 . "#eab700")
+     (360 . "#718c00"))))
  '(vc-annotate-very-old-color nil)
  '(vc-follow-symlinks nil))
 
@@ -59,7 +82,7 @@
 
 ;; Auto activate modes.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-;;(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
@@ -112,24 +135,6 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-
-;; nXhtl
-
-;; (load "/Users/achan/.emacs.d/nxhtml/autostart.el")
-
-;; Configure gnus for email; this info needs to be configured to your setup.
-(setq gnus-select-method '(nnimap "gmail"
-				  (nnimap-address "imap.gmail.com")
-				  (nnimap-server-port 993)
-				  (nnimap-stream ssl)))
-
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "misteravery@gmail.com" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      smtpmail-local-domain "Celestra.local")
 
 ;; Add Marmalade to package manager.
 (require 'package)
