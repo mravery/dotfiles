@@ -30,8 +30,6 @@ else
     ls_mac=""
 fi
 
-echo $ls_linux
-echo $ls_mac
 alias ls="ls -F $ls_linux"
 alias ll="ls -Fahl $ls_linux"
 alias lv="ls -aehlFG $ls_mac $ls_linux"
@@ -103,15 +101,14 @@ vercomp () {
 ## MAC ONLY
 ################################################################################
 if [[ $OS = 'Mac' ]]; then
-
     ### EMACS VERSION CHECK
     # make sure that we're working with emacs >= 24
     wanted_ver=24
     curr_ver=`emacs --version | grep -oE '[[:digit:]]+\.[.[:digit:]]*'`
     vercomp $curr_ver $wanted_ver
 
-    # If vercomp returns 2, then our emacs version isn't good enough.
-    if [[ $? = 2 ]]; then
+    # If vercomp returns 2, then our current emacs version isn't good enough.
+    if [[ $? == 2 ]]; then
 	if [[ -e '/usr/local/bin/emacs' ]]; then
 	    emacs_path='/usr/local/bin/emacs -nw'
 	elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
