@@ -18,18 +18,20 @@ else
     export PS1='\u[\@]\w > '
 fi
 
-if [[ $OS -eq 'Linux' ]]; then
+if [[ $OS = 'Linux' ]]; then
     ls_linux="--color=always"
 else
     ls_linux=""
 fi
 
-if [[ $OS -eq 'Mac' ]]; then
+if [[ $OS = 'Mac' ]]; then
     ls_mac="-@"
 else
     ls_mac=""
 fi
 
+echo $ls_linux
+echo $ls_mac
 alias ls="ls -F $ls_linux"
 alias ll="ls -Fahl $ls_linux"
 alias lv="ls -aehlFG $ls_mac $ls_linux"
