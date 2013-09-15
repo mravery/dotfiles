@@ -15,3 +15,6 @@ tramp
 .emacs.d/elpa/archives/
 .emacs.d/url/cookies
 .emacs.d/eshell/
+
+# SSH files. These shouldn't be pushed to a public server.
+.ssh/config

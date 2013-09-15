@@ -9,6 +9,7 @@ umask 006
 export PATH=.:~/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExfxcxdxBxegedabagacad
+export EDITOR=emacs
 
 if [ "$TERM" != "dumb" ]; then
     export PS1='\[\e[40m\e[1;32m\]\u\[\e[0m\][\[\e[0;31m\]\@\[\e[0m\]]\[\e[1;34m\]\w \[\e[1;30m\]\[\e[0m\]> \[\e[0m\]'
@@ -17,9 +18,21 @@ else
     export PS1='\u[\@]\w > '
 fi
 
-alias ls='ls -F'
-alias ll='ls -Fahl'
-alias lv='ls -@aehlFG'
+if [[ $OS = 'Linux' ]]; then
+    ls_linux="--color=always"
+else
+    ls_linux=""
+fi
+
+if [[ $OS = 'Mac' ]]; then
+    ls_mac="-@"
+else
+    ls_mac=""
+fi
+
+alias ls="ls -F $ls_linux"
+alias ll="ls -Fahl $ls_linux"
+alias lv="ls -aehlFG $ls_mac $ls_linux"
 alias e='emacs'
 
 ################################################################################
@@ -79,15 +92,14 @@ vercomp () {
 ## MAC ONLY
 ################################################################################
 if [[ $OS = 'Mac' ]]; then
-
     ### EMACS VERSION CHECK
     # make sure that we're working with emacs >= 24
     wanted_ver=24
     curr_ver=`emacs --version | grep -oE '[[:digit:]]+\.[.[:digit:]]*'`
     vercomp $curr_ver $wanted_ver
 
-    # If vercomp returns 2, then our emacs version isn't good enough.
-    if [[ $? = 2 ]]; then
+    # If vercomp returns 2, then our current emacs version isn't good enough.
+    if [[ $? == 2 ]]; then
 	if [[ -e '/usr/local/bin/emacs' ]]; then
 	    emacs_path='/usr/local/bin/emacs -nw'
 	elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
