@@ -22,15 +22,6 @@ alias ll='ls -Fahl'
 alias lv='ls -@aehlFG'
 alias e='emacs'
 
-alias socketmravery="ssh -D 9999 mravery@ootbdev.com"
-alias mravery="ssh -i /Users/achan/.ssh/celestra_id_rsa mravery@sandbox.ootbdev.com"
-alias uclaan="ssh uclaan@ootbdev.com"
-alias ootbdv="ssh ootbdv@ootbdev.com"
-alias ootbin="ssh ootbin@ps15318.dreamhost.com"
-alias averych="ssh averych@ps15318.dreamhost.com"
-alias sandbin="ssh sandbin@ps47226.dreamhost.com"
-alias router="ssh -p 2011 root@192.168.100.100"
-
 ################################################################################
 ## FUNCTIONS
 ################################################################################
