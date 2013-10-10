@@ -78,6 +78,7 @@ vercomp () {
             # fill empty fields in ver2 with zeros
             ver2[i]=0
         fi
+	# <num>#$var converts the value of $var to the base of <num>
         if ((10#${ver1[i]} > 10#${ver2[i]})); then
             return 1
         fi
