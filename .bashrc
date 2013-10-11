@@ -34,6 +34,7 @@ alias ls="ls -F $ls_linux"
 alias ll="ls -Fahl $ls_linux"
 alias lv="ls -aehlFG $ls_mac $ls_linux"
 alias e='emacs'
+alias ec="emacsclient -t -a ''"
 
 ################################################################################
 ## FUNCTIONS
