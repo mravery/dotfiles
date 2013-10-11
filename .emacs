@@ -1,9 +1,17 @@
 ;; This configuration file needs the corresponding 
-;; .emacs.d directory to work properly.
+;; .emacs.d directory to work properly.
+
 ;; TIPS, TRICKS, AND HINTS (OH MY!)
 
 ;; You can turn on line-wrapping without the stupid arrows 
 ;; by turning on visual line mode
+
+
+;; RUN SERVER
+
+(require 'server)
+(unless (server-running-p)
+    (server-start))
 
 ;; PICK UP INSTALLED PACKAGES
 
@@ -20,7 +28,8 @@
 ;; (setq command-line-default-directory "~/Dropbox/Out of the Box/")
 
 ;; Set window size for 1440x900 (Macbook Air '13 2011)
-(if window-system (set-frame-size (selected-frame) 200 54))
+(if window-system (set-frame-size (selected-frame) 200 54))
+
 ;; SET PATHS
 ;; Pick up my private mods.
 (add-to-list 'load-path "~/.emacs.d/")
@@ -37,10 +46,6 @@
    (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
  '(col-highlight-vline-face-flag nil)
  '(column-number-mode t)
- '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
- '(custom-safe-themes
-   (quote
-    ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "d818d364712b551c535b952b3aa089c5941ef284" "39327baac0e924fc06c561986ed6fff862df8e1d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
  '(fci-rule-color "#efefef")
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -55,6 +60,7 @@
  '(org-startup-indented t)
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
+
  '(vc-annotate-color-map
    (quote
     ((20 . "#c82829")
@@ -126,6 +132,9 @@
 
 ;; Turn off linum in certain contexts
 (require 'linum-off)
+
+;; Load theme with safety check off. Now we don't need safe themes.
+(load-theme 'sanityinc-tomorrow-bright t)
 
 ;; ADDED FUNCTIONALITY CONFIGURATION
 
@@ -145,8 +154,9 @@
 (require 'tramp)
 (setq tramp-default-method "scp")
 
-;; 
+;; Don't create a new buffer when you go to a new directory in dired.
 (put 'dired-find-alternate-file 'disabled nil)
+
 ;; Turn off tool-bar
 (tool-bar-mode -1)
 (put 'downcase-region 'disabled nil)
