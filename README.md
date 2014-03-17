@@ -14,7 +14,7 @@ cd config
 For now, I mostly use emacs for web based development. The current features reflect this
 particular neeed.
 
-* Web files with mixed markup/processing languages are formatted via Multi-Web.
+* Web files with mixed markup/processing languages are formatted via [web-mode](http://web-mode.org/).
 * Current line is highlighted.
 * "Tomorrow Bright" is the current theme.
 

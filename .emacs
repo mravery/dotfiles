@@ -1,9 +1,17 @@
 ;; This configuration file needs the corresponding 
-;; .emacs.d directory to work properly.
+;; .emacs.d directory to work properly.
+
 ;; TIPS, TRICKS, AND HINTS (OH MY!)
 
 ;; You can turn on line-wrapping without the stupid arrows 
 ;; by turning on visual line mode
+
+
+;; RUN SERVER
+
+(require 'server)
+(unless (server-running-p)
+    (server-start))
 
 ;; PICK UP INSTALLED PACKAGES
 
@@ -20,7 +28,8 @@
 ;; (setq command-line-default-directory "~/Dropbox/Out of the Box/")
 
 ;; Set window size for 1440x900 (Macbook Air '13 2011)
-(if window-system (set-frame-size (selected-frame) 200 54))
+(if window-system (set-frame-size (selected-frame) 200 54))
+
 ;; SET PATHS
 ;; Pick up my private mods.
 (add-to-list 'load-path "~/.emacs.d/")
@@ -31,12 +40,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
  '(col-highlight-vline-face-flag nil)
  '(column-number-mode t)
- '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
- '(custom-safe-themes (quote ("d818d364712b551c535b952b3aa089c5941ef284" "39327baac0e924fc06c561986ed6fff862df8e1d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
  '(fci-rule-color "#efefef")
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -45,13 +54,33 @@
  '(large-file-warning-threshold nil)
  '(linum-format "%d ")
  '(make-backup-files nil)
- '(org-export-backends (quote (ascii beamer html icalendar latex md odt)))
+ '(org-export-backends (quote (ascii beamer html icalendar latex md odt)) t)
  '(org-list-allow-alphabetical t)
  '(org-startup-folded nil)
  '(org-startup-indented t)
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
- '(vc-annotate-color-map (quote ((20 . "#c82829") (40 . "#f5871f") (60 . "#eab700") (80 . "#718c00") (100 . "#3e999f") (120 . "#4271ae") (140 . "#8959a8") (160 . "#c82829") (180 . "#f5871f") (200 . "#eab700") (220 . "#718c00") (240 . "#3e999f") (260 . "#4271ae") (280 . "#8959a8") (300 . "#c82829") (320 . "#f5871f") (340 . "#eab700") (360 . "#718c00"))))
+
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#c82829")
+     (40 . "#f5871f")
+     (60 . "#eab700")
+     (80 . "#718c00")
+     (100 . "#3e999f")
+     (120 . "#4271ae")
+     (140 . "#8959a8")
+     (160 . "#c82829")
+     (180 . "#f5871f")
+     (200 . "#eab700")
+     (220 . "#718c00")
+     (240 . "#3e999f")
+     (260 . "#4271ae")
+     (280 . "#8959a8")
+     (300 . "#c82829")
+     (320 . "#f5871f")
+     (340 . "#eab700")
+     (360 . "#718c00"))))
  '(vc-annotate-very-old-color nil)
  '(vc-follow-symlinks nil))
 
@@ -59,7 +88,7 @@
 
 ;; Auto activate modes.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-;;(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
@@ -98,12 +127,14 @@
  '(font-lock-comment-face ((t (:foreground "#969896" :slant normal))))
  '(lazy-highlight ((t (:background "paleturquoise" :foreground "black"))))
  '(linum ((t (:background "#2a2a2a" :foreground "#9fc59f"))))
- '(mode-line ((t (:background "color-235" :box (:line-width 1 :color "#4d4d4c")))))
- '(org-hide ((t (:foreground "color-235"))) t)
+ '(org-hide ((t (:background "gray6" :foreground "#000000"))) t)
  '(widget-field ((t (:foreground "firebrick2" :box (:line-width 1 :color "#eaeaea"))))))
 
 ;; Turn off linum in certain contexts
 (require 'linum-off)
+
+;; Load theme with safety check off. Now we don't need safe themes.
+(load-theme 'sanityinc-tomorrow-bright t)
 
 ;; ADDED FUNCTIONALITY CONFIGURATION
 
@@ -112,24 +143,6 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-
-;; nXhtl
-
-;; (load "/Users/achan/.emacs.d/nxhtml/autostart.el")
-
-;; Configure gnus for email; this info needs to be configured to your setup.
-(setq gnus-select-method '(nnimap "gmail"
-				  (nnimap-address "imap.gmail.com")
-				  (nnimap-server-port 993)
-				  (nnimap-stream ssl)))
-
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "misteravery@gmail.com" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      smtpmail-local-domain "Celestra.local")
 
 ;; Add Marmalade to package manager.
 (require 'package)
@@ -141,8 +154,9 @@
 (require 'tramp)
 (setq tramp-default-method "scp")
 
-;; 
+;; Don't create a new buffer when you go to a new directory in dired.
 (put 'dired-find-alternate-file 'disabled nil)
+
 ;; Turn off tool-bar
 (tool-bar-mode -1)
 (put 'downcase-region 'disabled nil)

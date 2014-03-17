@@ -34,15 +34,7 @@ alias ls="ls -F $ls_linux"
 alias ll="ls -Fahl $ls_linux"
 alias lv="ls -aehlFG $ls_mac $ls_linux"
 alias e='emacs'
-
-alias socketmravery="ssh -D 9999 mravery@ootbdev.com"
-alias mravery="ssh -i /Users/achan/.ssh/celestra_id_rsa mravery@sandbox.ootbdev.com"
-alias uclaan="ssh uclaan@ootbdev.com"
-alias ootbdv="ssh ootbdv@ootbdev.com"
-alias ootbin="ssh ootbin@ps15318.dreamhost.com"
-alias averych="ssh averych@ps15318.dreamhost.com"
-alias sandbin="ssh sandbin@ps47226.dreamhost.com"
-alias router="ssh -p 2011 root@192.168.100.100"
+alias ec="emacsclient -t -a ''"
 
 ################################################################################
 ## FUNCTIONS
@@ -87,6 +79,7 @@ vercomp () {
             # fill empty fields in ver2 with zeros
             ver2[i]=0
         fi
+	# <num>#$var converts the value of $var to the base of <num>
         if ((10#${ver1[i]} > 10#${ver2[i]})); then
             return 1
         fi
