@@ -6,3 +6,5 @@
 [alias]
 	stat = status
 	co = checkout
+[credential]
+	helper = cache --timeout=3600
