@@ -6,8 +6,8 @@
 [alias]
 	stat = status
 	co = checkout
-	l = log --graph --oneline
-	ll = log --all --graph --oneline
+	l = log --graph --oneline  --decorate
+	ll = log --all --graph --oneline --decorate
 [credential]
 	helper = cache --timeout=3600
 
