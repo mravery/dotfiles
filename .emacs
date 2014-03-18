@@ -97,6 +97,9 @@
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 
+;; Web-mode customizations
+(setq web-mode-code-indent-offset 4)
+
 ;; Activate Pretty Control ^L
 (require 'pp-c-l)
 ;; Set the control line to 70 spaces.
