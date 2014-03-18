@@ -12,7 +12,7 @@ cd config
 ##emacs
 
 For now, I mostly use emacs for web based development. The current features reflect this
-particular neeed.
+particular neeed. REQUIRES EMACS =< 24.
 
 * Web files with mixed markup/processing languages are formatted via [web-mode](http://web-mode.org/).
 * Current line is highlighted.
