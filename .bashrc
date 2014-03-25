@@ -39,6 +39,14 @@ alias ec="emacsclient -t -a ''"
 ################################################################################
 ## FUNCTIONS
 ################################################################################
+## Displays all crontab jobs on system
+
+crontab_all (){
+    for user in $(cut -f1 -d: /etc/passwd); do 
+	echo $user; 
+	crontab -u $user -l; 
+    done
+}
 
 ## Shortcut for find
 srch (){ find . -type d \( -name "*temp" -o -name "*.svn*" -o -name ".git" \) -prune \
@@ -89,6 +97,38 @@ vercomp () {
     done
     return 0
 }
+ ################################################################################
+ ## LINUX (DEBIAN) ONLY
+ ################################################################################
+ 
+ if [[ $OS = 'Linux' ]]; then
+     ### For autojump
+     if [ -f /usr/share/autojump/autojump.sh ]; then
+	 . /usr/share/autojump/autojump.sh
+     fi
+     ### For ssh-agent. MacOSX doesn't need this because keychain does this.
+     SSH_ENV=$HOME/.ssh/environment
+     
+     # start the ssh-agent
+     function start_agent {
+	 echo "Initializing new SSH agent..."
+	 # spawn ssh-agent
+	 /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	 echo succeeded
+	 chmod 600 "${SSH_ENV}"
+	 . "${SSH_ENV}" > /dev/null
+	 /usr/bin/ssh-add
+     }
+     
+     if [ -f "${SSH_ENV}" ]; then
+	 . "${SSH_ENV}" > /dev/null
+	 ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+             start_agent;
+	 }
+     else
+	 start_agent;
+     fi
+ fi
 
 ################################################################################
 ## MAC ONLY
