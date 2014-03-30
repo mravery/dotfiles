@@ -116,12 +116,14 @@ if [[ $OS = 'Mac' ]]; then
 	    emacs_path='/usr/local/bin/emacs -nw'
 	elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
 	    emacs_path='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+	    emacsclient_path='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -t -a'
 	else
 	    echo -n "EMACS VERSION OUT OF DATE: $curr_emacs_version. "
 	    echo 'Install a newer version.'
 	    emacs_path=''
 	fi
 	export EDITOR="$emacs_path"
+	alias ec=$emacsclient_path
 	alias emacs="$emacs_path"
     fi
 
