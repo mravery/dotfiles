@@ -31,8 +31,24 @@
 (if window-system (set-frame-size (selected-frame) 200 54))
 
 ;; SET PATHS
-;; Pick up my private mods.
-(add-to-list 'load-path "~/.emacs.d/")
+
+;; Pick up my private mods. For some reason, on Debian, emacs
+;; generates a warning when you add .emacs.d to your load path. This
+;; is an attempt to avoid that. First we change the current directory
+;; via 'default-directory', then we add the said directroy via
+;; normal-top-level-add-to-load-path '(".")). Finally, we add all the
+;; sub-directories recursively via
+;; (normal-top-level-add-subdirs-to-load-path). 'elpa' is for using
+;; the package manager. 'meextensions' is for everything installed by
+;; me manually.
+
+(let ((default-directory "~/.emacs.d/elpa/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(let ((default-directory "~/.emacs.d/meextensions/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Default setup.
 (custom-set-variables
