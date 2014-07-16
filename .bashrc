@@ -135,6 +135,13 @@ vercomp () {
 ## MAC ONLY
 ################################################################################
 if [[ $OS = 'Mac' ]]; then
+    ### RESET PATH VARIABLE
+    if [ -x /usr/libexec/path_helper ]; then
+	PATH=""
+	eval `/usr/libexec/path_helper -s`
+	export PATH=.:~/bin:$PATH
+    fi
+
     ### EMACS VERSION CHECK
     # make sure that we're working with emacs >= 24
     wanted_ver=24
@@ -158,8 +165,8 @@ if [[ $OS = 'Mac' ]]; then
 
     ### AUTOJUMP
     # This shell snippet sets the prompt command and the necessary aliases
-    if [ -f `brew --prefix`/etc/autojump ]; then
-	. `brew --prefix`/etc/autojump
+    if [ -f `brew --prefix`/etc/autojump.sh ]; then
+	. `brew --prefix`/etc/autojump.sh
     fi
 
     ### FUN

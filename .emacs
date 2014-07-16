@@ -109,14 +109,19 @@
 ;; Auto activate modes.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . scss-mode))
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
 
+;; SCSS-mode customizations
+;; Don't auto-compile scss after saving.
+(setq scss-compile-at-save nil)
+
 ;; Web-mode customizations
-(setq web-mode-code-indent-offset 4)
+(setq web-mode-code-indent-offset 2)
 
 ;; Colorize regions with ANSI color codes
 (defun display-ansi-colors ()
@@ -167,6 +172,13 @@
 (load-theme 'sanityinc-tomorrow-bright t)
 
 ;; ADDED FUNCTIONALITY CONFIGURATION
+
+;; Multiple-cursors
+(require 'multiple-cursors)
+;; (global-set-key (kbd "C-M-c C-M-c") 'mc/edit-lines)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Key-bindings for Org mode.
 (global-set-key "\C-cl" 'org-store-link)
