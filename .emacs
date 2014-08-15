@@ -175,10 +175,10 @@
 
 ;; Multiple-cursors
 (require 'multiple-cursors)
-;; (global-set-key (kbd "C-M-c C-M-c") 'mc/edit-lines)
-;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;;(global-set-key (kbd "M-C-c M-C-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Key-bindings for Org mode.
 (global-set-key "\C-cl" 'org-store-link)
