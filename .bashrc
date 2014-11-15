@@ -51,7 +51,7 @@ crontab_all (){
 
 ## Shortcut for find
 srch (){ find . -type d \( -name "*temp" -o -name "*.svn*" -o -name ".git" \) -prune \
-		-o \! \( -name "*.svn*" -o -name "._DS_Store" \) -print0 | xargs -0 grep -EI --colour=always "$1"| cut -c 3- ; }
+		-o \! \( -name "*.svn*" -o -name "._DS_Store" \) -print0 | xargs -0 grep -EI -d "recurse" --colour=always "$1"| cut -c 3- ; }
 
 ## Alters the permissions to allow for web deployment
 webify(){
