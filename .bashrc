@@ -1,6 +1,6 @@
 OS=''
 case $OSTYPE in
-  darwin*)  OS='Mac' ;; 
+  darwin*)  OS='Mac' ;;
   linux*)   OS='Linux'  ;;
   *)        OS='UNKNOWN' ;;
 esac
@@ -43,9 +43,9 @@ alias grep='grep -EI --colour'
 ## Displays all crontab jobs on system
 
 crontab_all (){
-    for user in $(cut -f1 -d: /etc/passwd); do 
-	echo $user; 
-	crontab -u $user -l; 
+    for user in $(cut -f1 -d: /etc/passwd); do
+	echo $user;
+	crontab -u $user -l;
     done
 }
 
@@ -75,8 +75,8 @@ vercomp () {
 
     # IFS (Internal Field Separator) Fields are separated by a '.'
     # ($var) notation means turn $var into an array according to the IFS.
-    local IFS=. 
-    local i ver1=($1) ver2=($2) 
+    local IFS=.
+    local i ver1=($1) ver2=($2)
 
     # fill empty fields in ver1 with zeros
     # ${#var[@]} = the number of elements in the array/var.
@@ -101,7 +101,7 @@ vercomp () {
  ################################################################################
  ## LINUX (DEBIAN) ONLY
  ################################################################################
- 
+
  if [[ $OS = 'Linux' ]]; then
      ### For autojump
      if [ -f /usr/share/autojump/autojump.sh ]; then
@@ -109,7 +109,7 @@ vercomp () {
      fi
      ### For ssh-agent. MacOSX doesn't need this because keychain does this.
      SSH_ENV=$HOME/.ssh/environment
-     
+
      # start the ssh-agent
      function start_agent {
 	 echo "Initializing new SSH agent..."
@@ -120,7 +120,7 @@ vercomp () {
 	 . "${SSH_ENV}" > /dev/null
 	 /usr/bin/ssh-add
      }
-     
+
      if [ -f "${SSH_ENV}" ]; then
 	 . "${SSH_ENV}" > /dev/null
 	 ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
@@ -169,12 +169,20 @@ if [[ $OS = 'Mac' ]]; then
 	. `brew --prefix`/etc/autojump.sh
     fi
 
+    ###BASH COMPLETION
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+
+    ### GIT COMPLETION
+    if [ -f ~/.git-completion.bash ]; then
+        . ~/.git-completion.bash
+    fi
+
     ### FUN
     fore(){
 	php -c ~avery/dev/phpGolf/golf.ini $1
     }
-    
+
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
-
-

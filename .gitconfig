@@ -10,5 +10,7 @@
 	ll = log --all --graph --oneline --decorate
 [credential]
 	helper = cache --timeout=3600
-
-
+[push]
+	default = matching
+[core]
+	excludesfile = /Users/avery/.gitignore
