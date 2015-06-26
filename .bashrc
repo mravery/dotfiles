@@ -51,7 +51,7 @@ crontab_all (){
 
 ## Shortcut for find
 srch (){ find . -type d \( -name "*temp" -o -name "*.svn*" -o -name ".git" \) -prune \
-		-o \! \( -name "*.svn*" -o -name "._DS_Store" \) -print0 | xargs -0 grep -EI -d "recurse" --colour=always "$1"| cut -c 3- ; }
+ 		-o \! \( -name "*.svn*" -o -name "._DS_Store" \) -print0 | xargs -0 grep -EI -d "skip"  --colour=always "$1"| cut -c 3- ; }
 
 ## Alters the permissions to allow for web deployment
 webify(){
@@ -150,17 +150,17 @@ if [[ $OS = 'Mac' ]]; then
 
     # If vercomp returns 2, then our current emacs version isn't good enough.
     if [[ $? == 2 ]]; then
-	if [[ -e '/usr/local/bin/emacs' ]]; then
-	    emacs_path='/usr/local/bin/emacs -nw'
-	elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
-	    emacs_path='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-	else
-	    echo -n "EMACS VERSION OUT OF DATE: $curr_emacs_version. "
-	    echo 'Install a newer version.'
-	    emacs_path=''
-	fi
-	export EDITOR="$emacs_path"
-	alias emacs="$emacs_path"
+	      if [[ -e '/usr/local/bin/emacs' ]]; then
+	          emacs_path='/usr/local/bin/emacs -nw'
+	      elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
+	          emacs_path='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+	      else
+	          echo -n "EMACS VERSION OUT OF DATE: $curr_emacs_version. "
+	          echo 'Install a newer version.'
+	          emacs_path=''
+	      fi
+	      export EDITOR="$emacs_path"
+	      alias emacs="$emacs_path"
     fi
 
     ### AUTOJUMP
