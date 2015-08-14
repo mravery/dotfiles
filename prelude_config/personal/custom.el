@@ -1,4 +1,8 @@
 (setq prelude-whitespace nil)
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+    (ansi-color-apply-on-region (point-min) (point-max)))
 (require 'pp-c-l)
 (pretty-control-l-mode 1)
 (custom-set-variables
@@ -36,8 +40,11 @@
      ("#8B2C02" . 70)
      ("#93115C" . 85)
      ("#073642" . 100))))
+ '(js2-basic-offset 2)
  '(magit-diff-use-overlays nil)
+ '(magit-use-overlays nil)
  '(org-hide-leading-stars t)
+ '(org-startup-indented t)
  '(ruby-insert-encoding-magic-comment nil)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(tab-width 2)
@@ -74,3 +81,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
