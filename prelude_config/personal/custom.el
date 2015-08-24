@@ -44,6 +44,7 @@
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(org-hide-leading-stars t)
+ '(org-startup-folded (quote content))
  '(org-startup-indented t)
  '(ruby-insert-encoding-magic-comment nil)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
