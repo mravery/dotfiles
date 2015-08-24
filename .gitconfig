@@ -14,3 +14,10 @@
 	default = matching
 [core]
 	excludesfile = /Users/avery/.gitignore
+	
+;; `filter "lfs"` injected by Git Desktop
+;; Ugh. Thanks for telling me.
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
