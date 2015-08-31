@@ -15,7 +15,7 @@ export EDITOR=emacs
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-if [ "$TERM" != "dumb" ]; then
+if [[ "$TERM" != "dumb" ]]; then
     export PS1='\[\e[40m\e[1;32m\]\u@\h\[\e[0m\][\[\e[0;31m\]\@\[\e[0m\]]\[\e[1;34m\]\w \[\e[1;30m\]\[\e[0m\]> \[\e[0m\]'
 else
     export PROMPT_COMMAND=''
@@ -108,7 +108,7 @@ vercomp () {
 
  if [[ $OS = 'Linux' ]]; then
      ### For autojump
-     if [ -f /usr/share/autojump/autojump.sh ]; then
+     if [[ -f /usr/share/autojump/autojump.sh ]]; then
 	 . /usr/share/autojump/autojump.sh
      fi
      ### For ssh-agent. MacOSX doesn't need this because keychain does this.
@@ -125,7 +125,7 @@ vercomp () {
 	 /usr/bin/ssh-add
      }
 
-     if [ -f "${SSH_ENV}" ]; then
+     if [[ -f "${SSH_ENV}" ]]; then
 	 . "${SSH_ENV}" > /dev/null
 	 ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
              start_agent;
@@ -140,7 +140,7 @@ vercomp () {
 ################################################################################
 if [[ $OS = 'Mac' ]]; then
     ### RESET PATH VARIABLE
-    if [ -x /usr/libexec/path_helper ]; then
+    if [[ -x /usr/libexec/path_helper ]]; then
 	PATH=""
 	eval `/usr/libexec/path_helper -s`
 	export PATH=.:~/bin:$PATH
@@ -169,24 +169,27 @@ if [[ $OS = 'Mac' ]]; then
 
     ### AUTOJUMP
     # This shell snippet sets the prompt command and the necessary aliases
-    if [ -f `brew --prefix`/etc/autojump.sh ]; then
+    if [[ -f `brew --prefix`/etc/autojump.sh ]]; then
 	. `brew --prefix`/etc/autojump.sh
     fi
 
     ###BASH COMPLETION
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
         . $(brew --prefix)/etc/bash_completion
     fi
 
     ### GIT COMPLETION
-    if [ -f ~/.git-completion.bash ]; then
+    if [[ -f ~/.git-completion.bash ]]; then
         . ~/.git-completion.bash
     fi
 
     ### FUN
     fore(){
-	php -c ~avery/dev/phpGolf/golf.ini $1
+	      php -c ~avery/dev/phpGolf/golf.ini $1
     }
+    if [[ -f /usr/local/bin/archey ]]; then
+        /usr/local/bin/archey -c
+    fi
 
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
