@@ -11,6 +11,10 @@ export CLICOLOR=1
 export LSCOLORS=ExfxcxdxBxegedabagacad
 export EDITOR=emacs
 
+## Set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 if [ "$TERM" != "dumb" ]; then
     export PS1='\[\e[40m\e[1;32m\]\u@\h\[\e[0m\][\[\e[0;31m\]\@\[\e[0m\]]\[\e[1;34m\]\w \[\e[1;30m\]\[\e[0m\]> \[\e[0m\]'
 else
