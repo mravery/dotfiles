@@ -1,15 +1,37 @@
+;; Turn off the default whitespace-mode (from prelude)
+;; `whitespace-mode` turns on visualizations for whitespaces
+;; since they aren't apparent by default.
 (setq prelude-whitespace nil)
+
+(setq my-tab-width 2)
+'(c-basic-offset my-tab-width)
+'(js2-basic-offset my-tab-width)
+'(standard-indent my-tab-width)
+'(tab-width my-tab-width)
+'(web-mode-attr-indent-offset my-tab-width)
+'(web-mode-code-indent-offset my-tab-width)
+'(web-mode-css-indent-offset my-tab-width)
+
 (require 'ansi-color)
 (defun display-ansi-colors ()
   (interactive)
-    (ansi-color-apply-on-region (point-min) (point-max)))
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 (require 'pp-c-l)
 (pretty-control-l-mode 1)
+
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; Add line numbers only to programming modes and add space-buffer
+;; between the line number and the buffer content
+(setq linum-format "%d ")
+(add-hook 'prog-mode-hook 'linum-mode)
+
+;;;;;;;;;;; BELOW SET BY EMACS ;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -46,7 +68,6 @@
      ("#8B2C02" . 70)
      ("#93115C" . 85)
      ("#073642" . 100))))
- '(js2-basic-offset 2)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(org-hide-leading-stars t)
@@ -54,8 +75,6 @@
  '(org-startup-indented t)
  '(ruby-insert-encoding-magic-comment nil)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
- '(standard-indent 2)
- '(tab-width 2)
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(vc-annotate-background nil)
@@ -80,9 +99,6 @@
      (340 . "#e7c547")
      (360 . "#b9ca4a"))))
  '(vc-annotate-very-old-color nil)
- '(web-mode-attr-indent-offset 2)
- '(web-mode-code-indent-offset 2)
- '(web-mode-css-indent-offset 2)
  '(weechat-color-list
    (quote
     (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83"))))
