@@ -24,7 +24,7 @@ Features:
 
 * Turn on colors.
 * Initialize user and email to me.
-* Setup a number of shortctus (i.e. aliases).
+* Setup a number of shortcuts (i.e. aliases).
 
 ##bash
 
@@ -33,6 +33,7 @@ Features:
 * Define a number of helpful custom shell functions.
 * `if-then` certain functionality based on OS being run (right now Mac or Linux).
 * Set-up pretty prompt.
+* Colorizes grep.
 
 ####TODO
 

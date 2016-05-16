@@ -31,8 +31,24 @@
 (if window-system (set-frame-size (selected-frame) 200 54))
 
 ;; SET PATHS
-;; Pick up my private mods.
-(add-to-list 'load-path "~/.emacs.d/")
+
+;; Pick up my private mods. For some reason, on Debian, emacs
+;; generates a warning when you add .emacs.d to your load path. This
+;; is an attempt to avoid that. First we change the current directory
+;; via 'default-directory', then we add the said directroy via
+;; normal-top-level-add-to-load-path '(".")). Finally, we add all the
+;; sub-directories recursively via
+;; (normal-top-level-add-subdirs-to-load-path). 'elpa' is for using
+;; the package manager. 'meextensions' is for everything installed by
+;; me manually.
+
+(let ((default-directory "~/.emacs.d/elpa/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(let ((default-directory "~/.emacs.d/meextensions/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Default setup.
 (custom-set-variables
@@ -93,12 +109,24 @@
 ;; Auto activate modes.
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . scss-mode))
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
+;; SCSS-mode customizations
+;; Don't auto-compile scss after saving.
+(setq scss-compile-at-save nil)
 
 ;; Web-mode customizations
-(setq web-mode-code-indent-offset 4)
+(setq web-mode-code-indent-offset 2)
+
+;; Colorize regions with ANSI color codes
+(defun display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
 
 ;; Activate Pretty Control ^L
 (require 'pp-c-l)
@@ -144,6 +172,13 @@
 (load-theme 'sanityinc-tomorrow-bright t)
 
 ;; ADDED FUNCTIONALITY CONFIGURATION
+
+;; Multiple-cursors
+(require 'multiple-cursors)
+;;(global-set-key (kbd "M-C-c M-C-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Key-bindings for Org mode.
 (global-set-key "\C-cl" 'org-store-link)

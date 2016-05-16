@@ -1,6 +1,6 @@
 OS=''
 case $OSTYPE in
-  darwin*)  OS='Mac' ;; 
+  darwin*)  OS='Mac' ;;
   linux*)   OS='Linux'  ;;
   *)        OS='UNKNOWN' ;;
 esac
@@ -11,8 +11,12 @@ export CLICOLOR=1
 export LSCOLORS=ExfxcxdxBxegedabagacad
 export EDITOR=emacs
 
-if [ "$TERM" != "dumb" ]; then
-    export PS1='\[\e[40m\e[1;32m\]\u@\h\[\e[0m\][\[\e[0;31m\]\@\[\e[0m\]]\[\e[1;34m\]\w \[\e[1;30m\]\[\e[0m\]> \[\e[0m\]'
+## Set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+if [[ "$TERM" != "dumb" ]]; then
+    export PS1='\[\e[40m\e[1;33m\]\u@\h\[\e[0m\][\[\e[0;31m\]\@\[\e[0m\]]\[\e[1;34m\]\w \[\e[1;30m\]\[\e[0m\]> \[\e[0m\]'
 else
     export PROMPT_COMMAND=''
     export PS1='\u[\@]\w > '
@@ -35,14 +39,23 @@ alias ll="ls -Fahl $ls_linux"
 alias lv="ls -aehlFG $ls_mac $ls_linux"
 alias e='emacs'
 alias ec="emacsclient -t -a ''"
+alias grep='grep -EI --colour'
 
 ################################################################################
 ## FUNCTIONS
 ################################################################################
+## Displays all crontab jobs on system
+
+crontab_all (){
+    for user in $(cut -f1 -d: /etc/passwd); do
+	echo $user;
+	crontab -u $user -l;
+    done
+}
 
 ## Shortcut for find
 srch (){ find . -type d \( -name "*temp" -o -name "*.svn*" -o -name ".git" \) -prune \
-		-o \! \( -name "*.svn*" -o -name "._DS_Store" \) -print | xargs grep -I "$1"| cut -c 3- ; }
+ 		-o \! \( -name "*.svn*" -o -name "._DS_Store" \) -print0 | xargs -0 grep -EI -d "skip"  --colour=always "$1"| cut -c 3- ; }
 
 ## Alters the permissions to allow for web deployment
 webify(){
@@ -66,8 +79,8 @@ vercomp () {
 
     # IFS (Internal Field Separator) Fields are separated by a '.'
     # ($var) notation means turn $var into an array according to the IFS.
-    local IFS=. 
-    local i ver1=($1) ver2=($2) 
+    local IFS=.
+    local i ver1=($1) ver2=($2)
 
     # fill empty fields in ver1 with zeros
     # ${#var[@]} = the number of elements in the array/var.
@@ -92,11 +105,33 @@ vercomp () {
  ################################################################################
  ## LINUX (DEBIAN) ONLY
  ################################################################################
- 
+
  if [[ $OS = 'Linux' ]]; then
      ### For autojump
-     if [ -f /usr/share/autojump/autojump.sh ]; then
+     if [[ -f /usr/share/autojump/autojump.sh ]]; then
 	 . /usr/share/autojump/autojump.sh
+     fi
+     ### For ssh-agent. MacOSX doesn't need this because keychain does this.
+     SSH_ENV=$HOME/.ssh/environment
+
+     # start the ssh-agent
+     function start_agent {
+	 echo "Initializing new SSH agent..."
+	 # spawn ssh-agent
+	 /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	 echo succeeded
+	 chmod 600 "${SSH_ENV}"
+	 . "${SSH_ENV}" > /dev/null
+	 /usr/bin/ssh-add
+     }
+
+     if [[ -f "${SSH_ENV}" ]]; then
+	 . "${SSH_ENV}" > /dev/null
+	 ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+             start_agent;
+	 }
+     else
+	 start_agent;
      fi
  fi
 
@@ -104,6 +139,13 @@ vercomp () {
 ## MAC ONLY
 ################################################################################
 if [[ $OS = 'Mac' ]]; then
+    ### RESET PATH VARIABLE
+    if [[ -x /usr/libexec/path_helper ]]; then
+	PATH=""
+	eval `/usr/libexec/path_helper -s`
+	export PATH=.:~/bin:$PATH
+    fi
+
     ### EMACS VERSION CHECK
     # make sure that we're working with emacs >= 24
     wanted_ver=24
@@ -112,33 +154,44 @@ if [[ $OS = 'Mac' ]]; then
 
     # If vercomp returns 2, then our current emacs version isn't good enough.
     if [[ $? == 2 ]]; then
-	if [[ -e '/usr/local/bin/emacs' ]]; then
-	    emacs_path='/usr/local/bin/emacs -nw'
-	elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
-	    emacs_path='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-	    emacsclient_path='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -t -a'
-	else
-	    echo -n "EMACS VERSION OUT OF DATE: $curr_emacs_version. "
-	    echo 'Install a newer version.'
-	    emacs_path=''
-	fi
-	export EDITOR="$emacs_path"
-	alias ec=$emacsclient_path
-	alias emacs="$emacs_path"
+      if [[ -e '/usr/local/bin/emacs' ]]; then
+	emacs_path='/usr/local/bin/emacs -nw'
+      elif  [[ -e '/Applications/Emacs.app/Contents/MacOS/Emacs' ]]; then
+	emacs_path='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+	emacsclient_path='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -t -a'
+      else
+        echo -n "EMACS VERSION OUT OF DATE: $curr_emacs_version. "
+	echo 'Install a newer version.'
+	emacs_path=''
+      fi
+      export EDITOR="$emacs_path"
+      alias ec=$emacsclient_path
+      alias emacs="$emacs_path"
     fi
 
     ### AUTOJUMP
     # This shell snippet sets the prompt command and the necessary aliases
-    if [ -f `brew --prefix`/etc/autojump ]; then
-	. `brew --prefix`/etc/autojump
+    if [[ -f `brew --prefix`/etc/autojump.sh ]]; then
+	. `brew --prefix`/etc/autojump.sh
+    fi
+
+    ###BASH COMPLETION
+    if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+
+    ### GIT COMPLETION
+    if [[ -f ~/.git-completion.bash ]]; then
+        . ~/.git-completion.bash
     fi
 
     ### FUN
     fore(){
-	php -c ~avery/dev/phpGolf/golf.ini $1
+	      php -c ~avery/dev/phpGolf/golf.ini $1
     }
-    
+    if [[ -f /usr/local/bin/archey ]]; then
+        /usr/local/bin/archey -c
+    fi
+
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
-
-
