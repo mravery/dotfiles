@@ -1,6 +1,6 @@
 [user]
 	name = Avery Chan
-	email = avery@ootbdev.com
+	email = avery@avericity.com
 [color]
 	ui = true
 [alias]
@@ -21,3 +21,5 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[status]
+	submoduleSummary = true
