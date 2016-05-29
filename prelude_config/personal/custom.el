@@ -18,6 +18,8 @@
   (ansi-color-apply-on-region (point-min) (point-max)))
 
 (require 'pp-c-l)
+(setq pp^L-^L-string
+      "                                                           ")
 (pretty-control-l-mode 1)
 
 (require 'multiple-cursors)
@@ -70,6 +72,7 @@
      ("#073642" . 100))))
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
+ '(org-agenda-files (quote ("~/Dropbox/TODO.org")))
  '(org-hide-leading-stars t)
  '(org-startup-folded (quote content))
  '(org-startup-indented t)
