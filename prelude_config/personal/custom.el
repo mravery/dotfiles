@@ -12,10 +12,18 @@
 '(web-mode-code-indent-offset my-tab-width)
 '(web-mode-css-indent-offset my-tab-width)
 
-(require 'ansi-color)
+(require 'tty-format)
+
+;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences
 (defun display-ansi-colors ()
   (interactive)
-  (ansi-color-apply-on-region (point-min) (point-max)))
+  (format-decode-buffer 'ansi-colors))
+
+;; decode ANSI color escape sequences for *.txt or README files
+;; (add-hook 'find-file-hooks 'tty-format-guess)
+
+;; decode ANSI color escape sequences for .log files
+;; (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
 
 (require 'pp-c-l)
 (setq pp^L-^L-string
@@ -33,6 +41,15 @@
 (setq linum-format "%d ")
 (add-hook 'prog-mode-hook 'linum-mode)
 
+;;; Treat all themes as safe
+(setq custom-safe-themes t)
+
+;;; Shortcut for magit-status
+(global-set-key (kbd "C-c C-x g") 'magit-status)
+
+;;; Set org-mode to truncate lines and word-wrap by default
+(add-hook 'org-mode-hook (lambda () (visual-line-mode t)))
+
 ;;;;;;;;;;; BELOW SET BY EMACS ;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -49,9 +66,6 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-safe-themes
-   (quote
-    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
  '(fci-rule-color "#424242")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
@@ -72,7 +86,9 @@
      ("#073642" . 100))))
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
+ '(markdown-command "/usr/local/bin/pandoc -c file:///Users/avery/dev/me.config/prelude/personal/github-pandoc.css --from markdown_github -t html5 --mathjax --highlight-style pygments --standalone")
  '(org-agenda-files (quote ("~/Dropbox/TODO.org")))
+ '(org-export-backends (quote (ascii html icalendar latex md)))
  '(org-hide-leading-stars t)
  '(org-startup-folded (quote content))
  '(org-startup-indented t)

@@ -9,7 +9,7 @@ umask 006
 export PATH=.:~/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExfxcxdxBxegedabagacad
-export EDITOR=emacs
+export EDITOR="emacsclient -t -a ''"
 
 ## Set locale
 export LC_ALL=en_US.UTF-8
@@ -164,9 +164,9 @@ if [[ $OS = 'Mac' ]]; then
 	echo 'Install a newer version.'
 	emacs_path=''
       fi
-      export EDITOR="$emacs_path"
       alias ec=$emacsclient_path
       alias emacs="$emacs_path"
+      EDITOR=$emacsclient_path
     fi
 
     ### AUTOJUMP
@@ -195,3 +195,8 @@ if [[ $OS = 'Mac' ]]; then
 
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
+
+################################################################################
+## HOME
+################################################################################
+alias waketv='wakeonlan 40:8D:5C:4E:81:87'
