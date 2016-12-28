@@ -1,3 +1,6 @@
+################################################################################
+## Needs Bash version 4 and higher for command-not-found
+################################################################################
 OS=''
 case $OSTYPE in
   darwin*)  OS='Mac' ;;
@@ -185,6 +188,11 @@ if [[ $OS = 'Mac' ]]; then
         . ~/.git-completion.bash
     fi
 
+    ## UBUNTU-COMMAND-NOT-FOUND (requires bash > 4)
+    if brew command command-not-found-init > /dev/null 2>&1; then
+        eval "$(brew command-not-found-init)";
+    fi
+
     ### FUN
     fore(){
 	      php -c ~avery/dev/phpGolf/golf.ini $1
@@ -200,3 +208,4 @@ fi
 ## HOME
 ################################################################################
 alias waketv='wakeonlan 40:8D:5C:4E:81:87'
+alias wakedisk='wakeonlan 00:11:32:0F:A8:26'
