@@ -188,11 +188,6 @@ if [[ $OS = 'Mac' ]]; then
         . ~/.git-completion.bash
     fi
 
-    ## UBUNTU-COMMAND-NOT-FOUND (requires bash > 4)
-    if brew command command-not-found-init > /dev/null 2>&1; then
-        eval "$(brew command-not-found-init)";
-    fi
-
     ### FUN
     fore(){
 	      php -c ~avery/dev/phpGolf/golf.ini $1
