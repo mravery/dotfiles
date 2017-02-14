@@ -193,7 +193,7 @@ if [[ $OS = 'Mac' ]]; then
 	      php -c ~avery/dev/phpGolf/golf.ini $1
     }
     if [[ -f /usr/local/bin/archey ]]; then
-        /usr/local/bin/archey -c
+        /usr/local/bin/archey -c -o
     fi
 
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

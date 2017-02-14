@@ -86,12 +86,16 @@
      ("#073642" . 100))))
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
- '(markdown-command "/usr/local/bin/pandoc -c file:///Users/avery/dev/me.config/prelude/personal/github-pandoc.css --from markdown_github -t html5 --mathjax --highlight-style pygments --standalone")
+ '(markdown-command
+   "/usr/local/bin/pandoc -c file:///Users/avery/dev/me.config/prelude/personal/github-pandoc.css --from markdown_github -t html5 --mathjax --highlight-style pygments --standalone")
  '(org-agenda-files (quote ("~/Dropbox/TODO.org")))
  '(org-export-backends (quote (ascii html icalendar latex md)))
  '(org-hide-leading-stars t)
  '(org-startup-folded (quote content))
  '(org-startup-indented t)
+ '(package-selected-packages
+   (quote
+    (yaml-mode zop-to-char zenburn-theme yari xterm-color which-key web-mode web-beautify volatile-highlights vkill undo-tree solarized-theme smex smartrep smartparens smart-mode-line scss-mode ruby-tools rainbow-mode rainbow-delimiters puppet-mode pp-c-l php-mode ov org operate-on-number multiple-cursors move-text markdown-mode magit json-mode js2-mode inf-ruby imenu-anywhere ido-ubiquitous helm-projectile guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish diff-hl csv-mode crux company browse-kill-ring beacon anzu ace-window)))
  '(ruby-insert-encoding-magic-comment nil)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
