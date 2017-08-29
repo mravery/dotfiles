@@ -196,7 +196,12 @@ if [[ $OS = 'Mac' ]]; then
         /usr/local/bin/archey -c -o
     fi
 
-    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+    if [[ -x /usr/local/bin/brew ]]; then
+        export PATH=$PATH:/usr/local/sbin
+    fi
+
 fi
 
 ################################################################################
