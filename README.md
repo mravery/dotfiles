@@ -9,7 +9,7 @@ cd config
 ./setup
 ```
 
-##emacs
+## emacs
 
 For now, I mostly use emacs for web based development. The current features reflect this
 particular neeed. REQUIRES EMACS =< 24.
@@ -18,7 +18,7 @@ particular neeed. REQUIRES EMACS =< 24.
 * Current line is highlighted.
 * "Tomorrow Bright" is the current theme.
 
-##git
+## git
 
 Features:
 
@@ -26,7 +26,7 @@ Features:
 * Initialize user and email to me.
 * Setup a number of shortcuts (i.e. aliases).
 
-##bash
+## bash
 
 Features:
 
@@ -35,6 +35,6 @@ Features:
 * Set-up pretty prompt.
 * Colorizes grep.
 
-####TODO
+#### TODO
 
 * Write an install script that will automatically generate the symlinks to point the config files to the right place.
