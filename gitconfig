@@ -1,6 +1,6 @@
 [user]
 	name = Avery Chan
-	email = avery@avericity.com
+	email = avery@curiousgoji.com
 [color]
 	ui = true
 [alias]
@@ -13,7 +13,7 @@
 [push]
 	default = matching
 [core]
-	excludesfile = /Users/avery/.gitignore
+	excludesfile = ~/.gitignore
 	
 ;; `filter "lfs"` injected by Git Desktop
 ;; Ugh. Thanks for telling me.
