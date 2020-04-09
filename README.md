@@ -1,6 +1,3 @@
-me.config
-===========
-
 Contains all my config files for *nixy environments. The dream is to be able to execute the following to any new *nix environment and be magically setup.
 
 ```
