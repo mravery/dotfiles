@@ -1,0 +1,8 @@
+[submodule "prelude"]
+	path = prelude
+	url = git://github.com/bbatsov/prelude.git
+
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
