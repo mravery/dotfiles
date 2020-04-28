@@ -72,7 +72,10 @@
  '(org-export-backends (quote (ascii beamer html icalendar latex md odt)) t)
  '(org-list-allow-alphabetical t)
  '(org-startup-folded nil)
- '(org-startup-indented t))
+ '(org-startup-indented t)
+ '(package-selected-packages
+   (quote
+    (magit web-mode solarized-theme scss-mode rvm multiple-cursors linum-off feature-mode color-theme-solarized color-theme))))
 
 ;; VISUAL GOODIES
 
@@ -149,3 +152,9 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
