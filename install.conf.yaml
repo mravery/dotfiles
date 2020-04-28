@@ -1,0 +1,27 @@
+# SYSTEM INSTALL
+# `sudo apt-get update`
+# `sudo apt-get install git`
+# `sudo apt-get install emacs`
+# configure hostname: /etc/hostname, /etc/hosts
+# configure sshd: accept password or not
+# configure sudoers or home directory
+# configure .ssh keys and .ssh/config
+# git clone mravery/dotfiles
+
+- defaults:
+    link:
+      relink: true
+      force: true
+
+- clean: ['~']
+
+- link:
+    ~/.bashrc:
+    ~/.emacs:
+    ~/.emacs.d:
+    ~/.gitconfig:
+    ~/.gitignore:
+
+- create:
+    - ~/.emacs-autosave
+    - ~/.emacs-backup
