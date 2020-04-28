@@ -15,6 +15,11 @@
 
 ;; PICK UP INSTALLED PACKAGES
 
+;; Add Marmalade to package manager.
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("melpa" . "https://stable.melpa.org/packages/")))
+
 ;; Any installed packages (via elpa, etc) need to be initialized 
 ;; otherwise this .emacs can't access them.
 (package-initialize)
@@ -124,7 +129,7 @@
 
 ;; Multiple-cursors
 (require 'multiple-cursors)
-;;(global-set-key (kbd "M-C-c M-C-c") 'mc/edit-lines)
+(global-set-key (kbd "C-M-m C-M-m") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
@@ -135,16 +140,6 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
-;; Add Marmalade to package manager.
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-;; Activate tramp so we can do sudo all the time.
-(require 'tramp)
-(setq tramp-default-method "scp")
-
 ;; Don't create a new buffer when you go to a new directory in dired.
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -153,3 +148,4 @@
     (tool-bar-mode -1))
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
