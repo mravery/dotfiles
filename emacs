@@ -25,8 +25,6 @@
 ;; initial file is specified. The second sets the directory if a file
 ;; IS specified at startup.
 
-;; (setq command-line-default-directory "~/Dropbox/Out of the Box/")
-
 ;; Set window size for 1440x900 (Macbook Air '13 2011)
 (if window-system (set-frame-size (selected-frame) 200 54))
 
@@ -56,16 +54,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
  '(col-highlight-vline-face-flag nil)
  '(column-number-mode t)
-
- '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
- '(custom-safe-themes (quote ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "d818d364712b551c535b952b3aa089c5941ef284" "39327baac0e924fc06c561986ed6fff862df8e1d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "69546801bd9c98eeb7246a3d39497abeced1d11e" "3d1ce542866e3b41e55c661ec78baec04b3b6aee" default)))
-
  '(fci-rule-color "#efefef")
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -77,32 +67,7 @@
  '(org-export-backends (quote (ascii beamer html icalendar latex md odt)) t)
  '(org-list-allow-alphabetical t)
  '(org-startup-folded nil)
- '(org-startup-indented t)
- '(tool-bar-mode nil)
- '(vc-annotate-background nil)
-
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#c82829")
-     (40 . "#f5871f")
-     (60 . "#eab700")
-     (80 . "#718c00")
-     (100 . "#3e999f")
-     (120 . "#4271ae")
-     (140 . "#8959a8")
-     (160 . "#c82829")
-     (180 . "#f5871f")
-     (200 . "#eab700")
-     (220 . "#718c00")
-     (240 . "#3e999f")
-     (260 . "#4271ae")
-     (280 . "#8959a8")
-     (300 . "#c82829")
-     (320 . "#f5871f")
-     (340 . "#eab700")
-     (360 . "#718c00"))))
- '(vc-annotate-very-old-color nil)
- '(vc-follow-symlinks nil))
+ '(org-startup-indented t))
 
 ;; VISUAL GOODIES
 
@@ -134,10 +99,6 @@
 (setq pp^L-^L-string "                                                                      ");
 (pretty-control-l-mode 1)
 
-;; Adding color themes.
-(require 'color-theme)
-(setq color-theme-is-global t)
-
 ;; Adding windmove shortcuts.
 (global-set-key (kbd "C-c <left>")  'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
@@ -152,24 +113,12 @@
 ;;                       (cons (decode-char 'ucs #x4E00)
 ;;                             (decode-char 'ucs #x9FFF))
 ;;                       "-*-SimHei-*-*-*-*-14-*-*-*-*-*-iso10646-1")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background "#000000" :foreground "#eaeaea" :slant normal :weight normal :height 140 :width normal :family "Inconsolata"))))
- '(col-highlight ((t (:background "SlateGray3"))) t)
- '(font-lock-comment-face ((t (:foreground "#969896" :slant normal))))
- '(lazy-highlight ((t (:background "paleturquoise" :foreground "black"))))
- '(linum ((t (:background "#2a2a2a" :foreground "#9fc59f"))))
- '(org-hide ((t (:background "gray6" :foreground "#000000"))) t)
- '(widget-field ((t (:foreground "firebrick2" :box (:line-width 1 :color "#eaeaea"))))))
 
 ;; Turn off linum in certain contexts
 (require 'linum-off)
 
-;; Load theme with safety check off. Now we don't need safe themes.
-(load-theme 'sanityinc-tomorrow-bright t)
+;; Use Solarized theme (this probably won't work if the theme's not installed)
+(load-theme 'solarized-dark t)
 
 ;; ADDED FUNCTIONALITY CONFIGURATION
 
@@ -200,6 +149,7 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;; Turn off tool-bar
-(tool-bar-mode -1)
+(if window-system
+    (tool-bar-mode -1))
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
