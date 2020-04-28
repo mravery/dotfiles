@@ -1,10 +1,20 @@
-Contains all my config files for *nixy environments. The dream is to be able to execute the following to any new *nix environment and be magically setup.
+All my config files for *nixy environments. We use Dotbot for installation.
 
 ```
 git clone git@github.com:mravery/me.config.git config
 cd config
-./setup
+./install
 ```
+# Submodules
+
+* Prelude: https://github.com/bbatsov/prelude
+* Dobot: https://github.com/anishathalye/dotbot
+
+# Customization
+
+## Theme
+
+https://ethanschoonover.com/solarized/
 
 ## emacs
 
@@ -13,7 +23,6 @@ particular neeed. REQUIRES EMACS =< 24.
 
 * Web files with mixed markup/processing languages are formatted via [web-mode](http://web-mode.org/).
 * Current line is highlighted.
-* "Tomorrow Bright" is the current theme.
 
 ## git
 
@@ -31,7 +40,4 @@ Features:
 * `if-then` certain functionality based on OS being run (right now Mac or Linux).
 * Set-up pretty prompt.
 * Colorizes grep.
-
-#### TODO
-
-* Write an install script that will automatically generate the symlinks to point the config files to the right place.
+* 'ls' uses our theme.
