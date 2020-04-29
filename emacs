@@ -75,7 +75,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (magit web-mode solarized-theme scss-mode rvm multiple-cursors linum-off feature-mode color-theme-solarized color-theme))))
+    (markdown-mode magit web-mode solarized-theme scss-mode rvm multiple-cursors linum-off feature-mode color-theme-solarized color-theme))))
 
 ;; VISUAL GOODIES
 
@@ -88,6 +88,7 @@
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; SCSS-mode customizations
 ;; Don't auto-compile scss after saving.
