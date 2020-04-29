@@ -1,8 +1,8 @@
-All my config files for *nixy environments. We use Dotbot for installation.
+My config files for *nixy environments. We use Dotbot for installation.
 
 ```
-git clone git@github.com:mravery/me.config.git config
-cd config
+git clone git@github.com:mravery/me.config.git dotfiles
+cd dotfiles
 ./install
 ```
 # Submodules
@@ -16,25 +16,23 @@ cd config
 
 https://ethanschoonover.com/solarized/
 
-## emacs
+## Emacs
 
-For now, I mostly use emacs for web based development. The current features reflect this
-particular neeed. REQUIRES EMACS =< 24.
+## Requirements
+
+version: =< 25
 
 * Web files with mixed markup/processing languages are formatted via [web-mode](http://web-mode.org/).
 * Current line is highlighted.
+* `color-theme-solarized` and `solarized-theme` are both required for the theme to work. 🤷
 
-## git
+## Git
 
-Features:
-
-* Turn on colors.
-* Initialize user and email to me.
+* Colors are on.
+* Email is anonymized: mravery@users.noreply.github.com
 * Setup a number of shortcuts (i.e. aliases).
 
-## bash
-
-Features:
+## Bash
 
 * Define a number of helpful custom shell functions.
 * `if-then` certain functionality based on OS being run (right now Mac or Linux).
