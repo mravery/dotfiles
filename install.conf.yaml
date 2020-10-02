@@ -21,6 +21,7 @@
     ~/.emacs.d:
     ~/.gitconfig:
     ~/.gitignore:
+    ~/.profile:
 
 - create:
     - ~/.emacs-autosave
