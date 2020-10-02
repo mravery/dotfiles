@@ -3,6 +3,7 @@ My config files for *nixy environments. We use Dotbot for installation.
 ```
 git clone git@github.com:mravery/me.config.git dotfiles
 cd dotfiles
+git submodule update --init --recursive
 ./install
 ```
 # Submodules
